@@ -1,0 +1,23 @@
+data("iris") //Load the iris dataset
+str(iris) //Compactly displaying the internal structure of a dataset
+summary(iris) //The summary function returned descriptive statistics
+set.seed(111) // function sets the starting number used to generate a sequence of random numbers
+ind <- sample(2, nrow(iris),
+replace = TRUE,
+prob = c(0.8, 0.2))
+training <- iris[ind==1,]
+testing <- iris[ind==2,]
+library(psych) // Scatter Plot & Correlations
+// pairs.panels [in psych package] is used to create a scatter plot of matrices
+pairs.panels(training[,-5],
+gap = 0,
+bg = c("red", "yellow", "blue")[training$Species],
+pch=21)
+pc <- prcomp(training[,-5],
+center = TRUE,
+scale. = TRUE ) //# Principal Component Analysis
+attributes(pc)
+pc$center
+pc$scale
+print(pc)
+summary(pc)
